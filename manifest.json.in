@@ -1,0 +1,15 @@
+{
+    "name": "@APP_ID@",
+    "description": "simple compass that gets reading from drivers",
+    "architecture": "@CLICK_ARCH@",
+    "title": "@APP_NAME@",
+    "hooks": {
+        "compass": {
+            "apparmor": "compass.apparmor",
+            "desktop": "compass.desktop"
+        }
+    },
+    "version": "0.1",
+    "maintainer": "Andrej Campa <andrejcampa@gmail.com>",
+    "framework": "ubuntu-sdk-15.04"
+}
