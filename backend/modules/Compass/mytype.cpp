@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include <math.h>
+#include <QDir>
 
 using namespace std;
 
@@ -17,9 +18,13 @@ MyType::MyType(QObject *parent) :
     QObject(parent),
     m_message("test")
 {
+    QDir dir;
+    dir.mkpath("/home/phablet/.cache/compass.kwek/");
+    ifstream myfile ("/home/phablet/.cache/compass.kwek/calibration.kwek");
+
     //ifstream myfile ("/home/phablet/.local/share/compass/calibration.txt",ios::in);
     //ifstream myfile ("calibration.txt",ios::in);
-    ifstream myfile ("/tmp/calibration.kwek");
+    //ifstream myfile ("/tmp/calibration.kwek");
     if (myfile.is_open())
      {
           myfile>>x_offset;
@@ -75,9 +80,9 @@ QString MyType::calibrate()
     }
 
     QString output="calibration failed!";
-    //ofstream myfile ("/home/phablet/.local/share/compass/calibration.txt");
+    ofstream myfile ("/home/phablet/.cache/compass.kwek/calibration.kwek");
     //ofstream myfile ("calibration.txt");
-    ofstream myfile ("/tmp/calibration.kwek");
+    //ofstream myfile ("/tmp/calibration.kwek");
     if (myfile.is_open())
      {
           myfile<<xmin<<"\t";
