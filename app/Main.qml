@@ -1,5 +1,5 @@
-import QtQuick 2.0
-import Ubuntu.Components 1.1
+import QtQuick 2.4
+import Ubuntu.Components 1.3
 import Compass 1.0
 
 /*!
@@ -12,25 +12,16 @@ import Compass 1.0
 MainView {
     // objectName for functional testing purposes (autopilot-qt5)
     objectName: "mainView"
-
     // Note! applicationName needs to match the "name" field of the click manifest
-    applicationName: "compass.username"
-
-    /*
-     This property enables the application to change orientation
-     when the device is rotated. The default is false.
-    */
-    //automaticOrientation: false
-
-    // Removes the old toolbar and enables new features of the new header.
-    useDeprecatedToolbar: false
-
-    width: units.gu(50)
-    height: units.gu(50)
-    property var kot: 0
+    applicationName: "compass.kwek" //COMPASS ID
+    width: units.gu(100)
+    height: units.gu(75)
+    property int kot: 0
     Page {
-        title: i18n.tr("compass")
-
+        header: PageHeader {
+            id: pageHeader
+            title: i18n.tr("Compass")
+        }
         Timer {
             id: timer1
             interval: 200; running: true; repeat: true
@@ -40,40 +31,43 @@ MainView {
                igla.rotation = kot
             }
         }
-
-
         MyType {
             id: myType
 
         }
-
         Column {
-            anchors.centerIn:parent
-            spacing: units.gu(1)
             anchors {
-                margins: units.gu(2)
+                centerIn:parent
+                top: pageHeader.bottom
+                topMargin: units.gu(6)
                 fill: parent
-                horizontalCenter: Column.Center
-
+                horizontalCenter: pageHeader.horizontalCenter
             }
-            Image {
-                anchors.horizontalCenter:parent.horizontalCenter
-                source: "graphics/compass1.png"
+            spacing: units.gu(1)
                 Image {
-                    id: igla
-                    source: "graphics/igla.png"
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter
+                    }
+                    source: "graphics/compass1.png"
+                    Image {
+                        id: igla
+                        source: "graphics/igla.png"
+                    }
                 }
-
-            }
-
             Label {
                 id: label
                 objectName: "label"
-                text: myType.helloWorld
+                anchors {
+                    topMargin: units.gu(2)
+                }
+                text: i18n.tr("Azimuth: ")+myType.helloWorld+i18n.tr("°")
             }
-
             Button {
+
                 objectName: "button21"
+                anchors {
+                    topMargin: units.gu(2)
+                }
                 width: parent.width
 
                 text: i18n.tr("Calibrate")
@@ -84,11 +78,6 @@ MainView {
                     timer1.start()
                 }
             }
-           /* Label {
-                id: label1
-                objectName: "label1"
-                text: "Put the phone on the horizontal surface (e.g. on a table) and rotate it for at least 360 degrees in 3s."
-            }*/
         }
     }
 }

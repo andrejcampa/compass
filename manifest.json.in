@@ -9,7 +9,7 @@
             "desktop": "compass.desktop"
         }
     },
-    "version": "0.1",
+    "version": "0.2",
     "maintainer": "Andrej Campa <andrejcampa@gmail.com>",
-    "framework": "ubuntu-sdk-15.04"
+    "framework": "ubuntu-sdk-15.04.6"
 }

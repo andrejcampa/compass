@@ -1,11 +1,12 @@
 [Desktop Entry]
-_Name=compass
-Comment=My project description
+_Name=Compass
+Comment=Reading from the internal magnetic sensor
 Exec=@EXEC@
 Icon=@ICON@
 Terminal=false
 Type=Application
 X-Ubuntu-Touch=true
+X-Ubuntu-Supported-Orientations=portrait
 
 
 

@@ -23,9 +23,9 @@ file(GLOB PO_FILES *.po)
 
 file(GLOB_RECURSE I18N_SRC_FILES
  RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
- ${CMAKE_SOURCE_DIR}/*.qml 
- ${CMAKE_SOURCE_DIR}/*.js 
- ${CMAKE_SOURCE_DIR}/*.cpp 
+ ${CMAKE_SOURCE_DIR}/*.qml
+ ${CMAKE_SOURCE_DIR}/*.js
+ ${CMAKE_SOURCE_DIR}/*.cpp
  ${CMAKE_SOURCE_DIR}/*.h
 )
 list(APPEND I18N_SRC_FILES ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE_NAME}.in.h)
@@ -33,7 +33,7 @@ list(SORT I18N_SRC_FILES)
 
 add_custom_target(${POT_FILE} ALL
  COMMENT "Generating translation template"
- # Extract the translatable messages from the desktop file 
+ # Extract the translatable messages from the desktop file
  COMMAND ${INTLTOOL_EXTRACT} --update --type=gettext/ini
  --srcdir=${CMAKE_BINARY_DIR}/app ${DESKTOP_FILE_NAME}.in
  # Update the translation file
